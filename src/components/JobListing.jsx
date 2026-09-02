@@ -1,8 +1,17 @@
 import React from 'react'
+import {useState} from 'react'
 
 //create react JobListing component
 const JobListing = ({job}) => { //{job} - destructuring the props object
-   return (<div className="bg-white rounded-xl shadow-md relative">
+  const [showFullDescription, setShowFullDescription] = useState(false)
+
+  let description = job.description;
+
+  if(!showFullDescription){ 
+    description = description.substring(0, 90) + '...'
+  }
+  
+  return (<div className="bg-white rounded-xl shadow-md relative">
                 <div className="p-4">
                 <div className="mb-6">
                     <div className="text-gray-600 my-2">{job.type}</div>
@@ -10,8 +19,11 @@ const JobListing = ({job}) => { //{job} - destructuring the props object
                 </div>
 
                 <div className="mb-5">
-                    {job.description}
+                    {description}
                 </div>
+
+                <button onClick={ () => setShowFullDescription((prevState) => 
+                !prevState)} className="text-indigo-500 mb-5 hover:text-indigo-600">{ showFullDescription ? 'Less': 'More'}</button>
 
                 <h3 className="text-indigo-500 mb-2"> {job.salary} </h3>
 
@@ -50,5 +62,5 @@ you have one reusable component that can display any job.
     then  href={`/job/${job.id}`} => /job/42
     This lets every "Read More" button point to that specific job.
 
-    
+JobListing is rendered by JobListings and App
 */
