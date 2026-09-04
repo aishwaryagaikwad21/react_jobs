@@ -12,7 +12,7 @@ const JobListings = ({isHome = false}) => {
   
   useEffect(() => { //cannot use async here
     const fetchJobs = async () => {
-      const apiUrl = isHome ? 'http://localhost:8000/jobs?_page=1&_per_page=3' : 'http://localhost:8000/jobs'
+      const apiUrl = isHome ? '/api/jobs?_page=1&_per_page=3' : '/api/jobs'
       try{
         const res = await fetch(apiUrl)
         const data = await res.json()
