@@ -1,7 +1,14 @@
 import React from 'react'
+import {NavLink} from 'react-router-dom' //change <a> tag to <Link> and href to 'to'
 import logo from '../assets/images/logo.png'
 
+// /text-white bg-black hover:bg-gray-900 hover:text-white rounded-md px-3 py-2
+
 const Navbar = () => {
+  const linkClass = ({isActive}) => 
+    isActive ? 'bg-black text-white hover:bg-gray-900 hover:text-white rounded-md px-3 py-2'
+              : 
+          'text-white hover:bg-gray-900 hover:text-white rounded-md px-3 py-2'
   return (
     <nav className="bg-indigo-700 border-b border-indigo-500">
       <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
@@ -22,21 +29,21 @@ const Navbar = () => {
             </a>
             <div className="md:ml-auto">
               <div className="flex space-x-2">
-                <a
-                  href="/index.html"
-                  className="text-white bg-black hover:bg-gray-900 hover:text-white rounded-md px-3 py-2"
-                  >Home</a
-                >
-                <a
-                  href="/jobs.html"
-                  className="text-white hover:bg-gray-900 hover:text-white rounded-md px-3 py-2"
-                  >Jobs</a
-                >
-                <a
-                  href="/add-job.html"
-                  className="text-white hover:bg-gray-900 hover:text-white rounded-md px-3 py-2"
-                  >Add Job</a
-                >
+                <NavLink
+                  to="/"
+                  className= {linkClass} 
+                  >Home 
+                </NavLink>
+                <NavLink
+                  to="/jobs"
+                  className= {linkClass} 
+                  >Jobs
+                  </NavLink>
+                <NavLink
+                  to="/add-job.html"
+                  className= {linkClass} 
+                  >Add Job
+                </NavLink>
               </div>
             </div>
           </div>
