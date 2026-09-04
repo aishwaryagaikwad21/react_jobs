@@ -10,21 +10,21 @@ const JobListings = ({isHome = false}) => {
    const [jobs, setJobs] = useState([])
    const [loading, setLoading] = useState(true) //to show loading sign while fetching and when json data is loaded set it to false
   
-  useEffect(() => { //cannot use async here
-    const fetchJobs = async () => {
-      const apiUrl = isHome ? '/api/jobs?_page=1&_per_page=3' : '/api/jobs'
-      try{
-        const res = await fetch(apiUrl)
-        const data = await res.json()
-        setJobs(isHome ? data.data : data)
+    useEffect(() => { //cannot use async here
+      const fetchJobs = async () => {
+        const apiUrl = isHome ? '/api/jobs?_page=1&_per_page=3' : '/api/jobs'
+        try{
+          const res = await fetch(apiUrl)
+          const data = await res.json()
+          setJobs(isHome ? data.data : data)
+        }
+      catch(err){
+        console.log('Error Fetching data', err);
       }
-    catch(err){
-      console.log('Error Fetching data', err);
+      finally{
+        setLoading(false)
+      };
     }
-    finally{
-      setLoading(false)
-    };
-  }
     
   fetchJobs()
 
